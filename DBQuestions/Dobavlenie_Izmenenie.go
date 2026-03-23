@@ -1,4 +1,4 @@
-package BDQuestions
+package DBQuestions
 
 import (
 	"context"
