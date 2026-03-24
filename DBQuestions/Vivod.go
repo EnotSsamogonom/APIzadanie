@@ -8,17 +8,6 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-//func Connect () ( *Host) {
-//	ccc := &Host{
-//		user: "postgres",
-//		password : "Password",
-//		host : 1313,
-//		nameDB : "BooksDB",
-//	}
-//
-//	return ccc
-//}
-
 func VivodAuthors(id int) ([]Author, error) {
 	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
 	if err != nil {
