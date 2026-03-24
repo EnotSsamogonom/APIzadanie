@@ -1,13 +1,15 @@
 package main
 
 import (
-	"ZadanieTest/DBQuestions/tables"
-	"ZadanieTest/Rabota"
+	"APIzadanie/DBQuestions"
+	"APIzadanie/DBQuestions/tables"
+	"APIzadanie/Rabota"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	DBQuestions.Connect()
 	tables.DobavTableAuthots()
 	tables.DobavTableBooks()
 	router := gin.Default()
@@ -18,8 +20,9 @@ func main() {
 	api.GET("/knigi/:id", Rabota.VivodKnigi)
 	api.POST("/dobavAutor", Rabota.CreateDanniiAuthor)
 	api.POST("/dobavBook", Rabota.CreateDanniiBooks)
-	api.DELETE("/deliteAutor", Rabota.YdalenieAuthor)
-	api.DELETE("/deliteBook", Rabota.YdalenieBook)
+	api.PATCH("/knigi/:id", Rabota.IzmenenieAbout)
+	api.DELETE("/deliteAutor/:id", Rabota.YdalenieAuthor)
+	api.DELETE("/deliteBook/:id", Rabota.YdalenieBook)
 	router.Run(":8081")
 
 }

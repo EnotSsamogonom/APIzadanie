@@ -1,15 +1,31 @@
-package BDQuestions
+package DBQuestions
 
 import (
 	"errors"
 )
 
+type Host struct {
+	user     string
+	password string
+	host     int
+	nameDB   string
+}
+
+// "postgres://postgres:Password@localhost:1313/BooksDB"
+func Connect() *Host {
+	ccc := &Host{
+		user:     "postgres",
+		password: "Password",
+		host:     1313,
+		nameDB:   "BooksDB",
+	}
+
+	return ccc
+}
+
 type Author struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
-}
-type RequestBody struct {
-	ID int `json:"user_id"`
 }
 type Books struct {
 	ID       int    `json:"id"`

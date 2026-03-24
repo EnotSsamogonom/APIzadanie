@@ -8,8 +8,29 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func DobavAuthor(aaa *Author) error {
+func IzmenenimAbout(new string, id int) error {
 	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer db.Close(context.Background())
+	_, err = db.Exec(
+		context.Background(),
+		"UPDATE books SET about = ($1),WHERE id = ($2) ",
+		new,
+		id)
+	return err
+}
+
+// !!!!!!!!!!!!!!!!!!
+func DobavAuthor(aaa *Author) error {
+	var b Host
+	user := b.user
+	password := b.password
+	host := b.host
+	nameDB := b.nameDB
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s:%s@localhost:%s/%s", user, password, host, nameDB))
+	//db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
