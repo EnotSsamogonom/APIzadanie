@@ -2,14 +2,12 @@ package main
 
 import (
 	"APIzadanie/Rabota"
-	"APIzadanie/Rabota/DBQuestions"
 	"APIzadanie/Rabota/DBQuestions/migration"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	DBQuestions.Connect()
 	migration.DobavTableAuthots()
 	migration.DobavTableBooks()
 	router := gin.Default()

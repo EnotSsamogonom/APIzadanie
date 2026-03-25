@@ -6,13 +6,6 @@ import (
 )
 
 // "postgres://postgres:Password@localhost:1313/BooksDB"
-func Connect() *types.Host {
-	ccc := &types.Host{
-		Host: "postgres:Password@localhost:1313/BooksDB",
-	}
-
-	return ccc
-}
 
 func NewBook(nazvanie string, about string, author_id int) (*types.Books, error) {
 

@@ -1,7 +1,6 @@
 package DBQuestions
 
 import (
-	"APIzadanie/Rabota/DBQuestions/types"
 	"context"
 	"fmt"
 	"os"
@@ -10,9 +9,9 @@ import (
 )
 
 func DeleteAuthor(idAuthor int) error {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+	//var b types.Host
+	//host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -27,9 +26,8 @@ func DeleteAuthor(idAuthor int) error {
 }
 
 func DeliteBook(idBook int) error {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)

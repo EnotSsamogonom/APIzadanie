@@ -10,9 +10,8 @@ import (
 )
 
 func IzmenenimAbout(new string, id int) error {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -27,9 +26,8 @@ func IzmenenimAbout(new string, id int) error {
 
 // !!!!!!!!!!!!!!!!!!
 func DobavAuthor(aaa *types.Author) error {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	//db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
@@ -45,9 +43,8 @@ func DobavAuthor(aaa *types.Author) error {
 }
 
 func DobavBook(book *types.Books) error {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)

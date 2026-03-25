@@ -11,6 +11,4 @@ type Books struct {
 	AuthorID int    `json:"author_id"` // Связь с автором
 }
 
-type Host struct {
-	Host string
-}
+const Host = "postgres:Password@localhost:1313/API"

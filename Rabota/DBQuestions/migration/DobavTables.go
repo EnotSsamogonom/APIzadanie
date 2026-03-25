@@ -17,9 +17,7 @@ func DobavTableAuthots() {
 		name VARCHAR(255) NOT NULL
 	);`
 
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", types.Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -43,9 +41,8 @@ func DobavTableBooks() {
     about TEXT NOT NULL,
     author_id INTEGER REFERENCES authors(id) ON DELETE CASCADE -- ON DELETE CASCADE удалит посты автора, если сам автор удален
 );`
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", types.Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)

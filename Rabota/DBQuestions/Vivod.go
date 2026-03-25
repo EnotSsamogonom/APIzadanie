@@ -9,10 +9,13 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
+const Host = "postgres:Password@localhost:1313/API"
+
 func VivodAuthors(id int) ([]types.Author, error) {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+	//var b types.Host
+	//host := b.Host
+
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -72,9 +75,7 @@ func VivodAuthors(id int) ([]types.Author, error) {
 }
 
 func VivodBook(id int) ([]types.Books, error) {
-	var b types.Host
-	host := b.Host
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", Host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
