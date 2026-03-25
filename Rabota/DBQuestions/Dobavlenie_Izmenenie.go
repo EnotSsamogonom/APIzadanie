@@ -1,6 +1,7 @@
 package DBQuestions
 
 import (
+	"APIzadanie/Rabota/DBQuestions/types"
 	"context"
 	"fmt"
 	"os"
@@ -9,7 +10,9 @@ import (
 )
 
 func IzmenenimAbout(new string, id int) error {
-	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -23,13 +26,10 @@ func IzmenenimAbout(new string, id int) error {
 }
 
 // !!!!!!!!!!!!!!!!!!
-func DobavAuthor(aaa *Author) error {
-	var b Host
-	user := b.user
-	password := b.password
-	host := b.host
-	nameDB := b.nameDB
-	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s:%s@localhost:%s/%s", user, password, host, nameDB))
+func DobavAuthor(aaa *types.Author) error {
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	//db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
@@ -44,8 +44,10 @@ func DobavAuthor(aaa *Author) error {
 	return err
 }
 
-func DobavBook(book *Books) error {
-	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+func DobavBook(book *types.Books) error {
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)

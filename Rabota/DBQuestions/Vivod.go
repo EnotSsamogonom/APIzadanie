@@ -1,6 +1,7 @@
 package DBQuestions
 
 import (
+	"APIzadanie/Rabota/DBQuestions/types"
 	"context"
 	"fmt"
 	"os"
@@ -8,8 +9,10 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func VivodAuthors(id int) ([]Author, error) {
-	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+func VivodAuthors(id int) ([]types.Author, error) {
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -24,10 +27,10 @@ func VivodAuthors(id int) ([]Author, error) {
 			return nil, err
 		}
 		defer aut.Close()
-		var author []Author
+		var author []types.Author
 
 		for aut.Next() { //проходиммся по строкам и собираем их в одно
-			var a Author
+			var a types.Author
 			err := aut.Scan(&a.ID, &a.Name)
 			if err != nil {
 				return nil, err
@@ -48,10 +51,10 @@ func VivodAuthors(id int) ([]Author, error) {
 			return nil, err
 		}
 		defer aut.Close()
-		var author []Author
+		var author []types.Author
 
 		for aut.Next() { //проходиммся по строкам и собираем их в одно
-			var a Author
+			var a types.Author
 			err := aut.Scan(&a.ID, &a.Name)
 			if err != nil {
 				return nil, err
@@ -68,8 +71,10 @@ func VivodAuthors(id int) ([]Author, error) {
 
 }
 
-func VivodBook(id int) ([]Books, error) {
-	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+func VivodBook(id int) ([]types.Books, error) {
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -85,10 +90,10 @@ func VivodBook(id int) ([]Books, error) {
 			return nil, err
 		}
 		defer kn.Close()
-		var knigi []Books
+		var knigi []types.Books
 		//
 		for kn.Next() { //проходиммся по строкам и собираем их в одно
-			var b Books
+			var b types.Books
 			err := kn.Scan(&b.ID, &b.Nazvaie, &b.About, &b.AuthorID)
 			if err != nil {
 				return nil, err
@@ -109,10 +114,10 @@ func VivodBook(id int) ([]Books, error) {
 			return nil, err
 		}
 		defer kn.Close()
-		var knigi []Books
+		var knigi []types.Books
 		//
 		for kn.Next() { //проходиммся по строкам и собираем их в одно
-			var b Books
+			var b types.Books
 			err := kn.Scan(&b.ID, &b.Nazvaie, &b.About, &b.AuthorID)
 			if err != nil {
 				return nil, err

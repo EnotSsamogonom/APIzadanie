@@ -1,6 +1,7 @@
-package tables
+package migration
 
 import (
+	"APIzadanie/Rabota/DBQuestions/types"
 	"context"
 	"fmt"
 	"log"
@@ -16,7 +17,9 @@ func DobavTableAuthots() {
 		name VARCHAR(255) NOT NULL
 	);`
 
-	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -40,7 +43,9 @@ func DobavTableBooks() {
     about TEXT NOT NULL,
     author_id INTEGER REFERENCES authors(id) ON DELETE CASCADE -- ON DELETE CASCADE удалит посты автора, если сам автор удален
 );`
-	db, err := pgx.Connect(context.Background(), "postgres://postgres:Password@localhost:1313/BooksDB")
+	var b types.Host
+	host := b.Host
+	db, err := pgx.Connect(context.Background(), fmt.Sprintf("postgres://%s", host))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)

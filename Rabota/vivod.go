@@ -1,7 +1,7 @@
 package Rabota
 
 import (
-	"APIzadanie/DBQuestions"
+	"APIzadanie/Rabota/DBQuestions"
 	"fmt"
 	"log"
 	"net/http"

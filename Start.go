@@ -1,17 +1,17 @@
 package main
 
 import (
-	"APIzadanie/DBQuestions"
-	"APIzadanie/DBQuestions/tables"
 	"APIzadanie/Rabota"
+	"APIzadanie/Rabota/DBQuestions"
+	"APIzadanie/Rabota/DBQuestions/migration"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	DBQuestions.Connect()
-	tables.DobavTableAuthots()
-	tables.DobavTableBooks()
+	migration.DobavTableAuthots()
+	migration.DobavTableBooks()
 	router := gin.Default()
 	api := router.Group("/api")
 	api.GET("/authory", Rabota.VivodVsexAvtorov) // GET /api/authory

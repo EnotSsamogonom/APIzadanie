@@ -1,7 +1,7 @@
 package Rabota
 
 import (
-	"APIzadanie/DBQuestions"
+	"APIzadanie/Rabota/DBQuestions"
 	"net/http"
 	"strconv"
 
