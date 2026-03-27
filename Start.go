@@ -8,8 +8,9 @@ import (
 )
 
 func main() {
-	migration.DobavTableAuthots()
-	migration.DobavTableBooks()
+	migration.Dobav()
+	//migration.DobavTableAuthots()
+	//migration.DobavTableBooks()
 	router := gin.Default()
 	api := router.Group("/api")
 	api.GET("/authory", Rabota.VivodVsexAvtorov) // GET /api/authory
@@ -21,6 +22,6 @@ func main() {
 	api.PATCH("/knigi/:id", Rabota.IzmenenieAbout)
 	api.DELETE("/deliteAutor/:id", Rabota.YdalenieAuthor)
 	api.DELETE("/deliteBook/:id", Rabota.YdalenieBook)
-	router.Run(":8081")
+	router.Run(":5789")
 
 }
